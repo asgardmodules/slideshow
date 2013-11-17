@@ -1,5 +1,5 @@
 <?php
-class Slide extends \App\Core\Model {
+class Slide extends \Coxis\Core\Model {
 	public static $properties = array(
 		'image'	=>	array(
 			'type'	=>	'file',
