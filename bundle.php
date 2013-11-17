@@ -2,10 +2,6 @@
 namespace App\Slideshow;
 
 class Bundle extends \Coxis\Core\BundleLoader {
-	public function load($queue) {
-		parent::load();
-	}
-
 	public function run() {
 		Config::set('slideshow', 'width', 1000);
 		Config::set('slideshow', 'height', 768);
@@ -19,9 +15,9 @@ class Bundle extends \Coxis\Core\BundleLoader {
 			)
 		));
 
-		\App\Admin\Libs\AdminMenu::$menu[0]['childs'][] = array('label' => 'Slideshow', 'link' => 'slideshow');
+		\App\Admin\Libs\AdminMenu::instance()->menu[0]['childs'][] = array('label' => 'Slideshow', 'link' => 'slideshow');
 
-		\App\Admin\Libs\AdminMenu::$home[] = array('img'=>\URL::to('slideshow/icon.svg'), 'link'=>'slideshow', 'title' => __('Slideshow'), 'description' => __('Slideshow images'));
+		\App\Admin\Libs\AdminMenu::instance()->home[] = array('img'=>\URL::to('slideshow/icon.svg'), 'link'=>'slideshow', 'title' => __('Slideshow'), 'description' => __('Slideshow images'));
 		parent::run();
 	}
 }
