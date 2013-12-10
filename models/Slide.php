@@ -1,4 +1,6 @@
 <?php
+namespace Coxis\Slideshow\Models;
+
 class Slide extends \Coxis\Core\Model {
 	public static $properties = array(
 		'image'	=>	array(

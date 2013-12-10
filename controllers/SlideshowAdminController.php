@@ -3,16 +3,18 @@
 @Prefix('admin/slideshow')
 */
 class SlideshowAdminController extends \Coxis\Admin\Libs\Controller\AdminParentController {
+	#todo deleteSingleFile
+
 	public function formConfigure() {
 		$controller = $this;
-		$form = new \Coxis\Admin\Libs\Form\AdminSimpleForm($this);
-		$form->images = new DynamicGroup(function($data) use($controller) {
+		$form = new \Coxis\Admin\Libs\Form\AdminSimpleForm($this, 'slideshow');
+		$form->images = new \Coxis\Form\DynamicGroup(function($data) use($controller) {
 			if($data !== null)
 				if($data === '' || (is_array($data) && !array_filter(Tools::flateArray($data))))
 					return;
-			return new AdminModelForm(new Slide, $controller);
+			return new \Coxis\Admin\Libs\Form\AdminModelForm(new \Coxis\Slideshow\Models\Slide, $controller);
 		});
-		foreach(Slide::orderBy('id ASC')->get() as $k=>$a){
+		foreach(\Coxis\Slideshow\Models\Slide::orderBy('id ASC')->get() as $k=>$a){
 			$form->images[$k] = new \Coxis\Admin\Libs\Form\AdminModelForm($a, $this);
 		}
 		$form->hasfile = true;

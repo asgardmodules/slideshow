@@ -17,7 +17,7 @@ class Bundle extends \Coxis\Core\BundleLoader {
 
 		\Coxis\Admin\Libs\AdminMenu::instance()->menu[0]['childs'][] = array('label' => 'Slideshow', 'link' => 'slideshow');
 
-		\Coxis\Admin\Libs\AdminMenu::instance()->home[] = array('img'=>\URL::to('slideshow/icon.svg'), 'link'=>'slideshow', 'title' => __('Slideshow'), 'description' => __('Slideshow images'));
+		\Coxis\Admin\Libs\AdminMenu::instance()->home[] = array('img'=>\Coxis\Core\Facades\URL::to('slideshow/icon.svg'), 'link'=>'slideshow', 'title' => __('Slideshow'), 'description' => __('Slideshow images'));
 		parent::run();
 	}
 }
