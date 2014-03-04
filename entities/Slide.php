@@ -1,7 +1,7 @@
 <?php
-namespace Coxis\Slideshow\Models;
+namespace Coxis\Slideshow\Entities;
 
-class Slide extends \Coxis\Core\Model {
+class Slide extends \Coxis\Core\Entity {
 	public static $properties = array(
 		'image'	=>	array(
 			'type'	=>	'file',
