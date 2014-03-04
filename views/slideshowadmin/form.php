@@ -6,7 +6,7 @@
 				</div>		<!-- .block_head ends -->
 				
 				<div class="block_content">
-					<?php \Coxis\Core\Coxis\Core\App::get('flash')->showAll() ?>
+					<?php \Asgard\Core\Asgard\Core\App::get('flash')->showAll() ?>
 					
 					<script>
 					function add() {

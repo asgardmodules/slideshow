@@ -1,7 +1,7 @@
 <?php
-namespace Coxis\Slideshow\Entities;
+namespace Asgard\Slideshow\Entities;
 
-class Slide extends \Coxis\Core\Entity {
+class Slide extends \Asgard\Core\Entity {
 	public static $properties = array(
 		'image'	=>	array(
 			'type'	=>	'file',

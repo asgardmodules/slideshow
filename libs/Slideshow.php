@@ -1,5 +1,5 @@
 <?php
-class Slideshow extends \Coxis\Core\Viewable {
+class Slideshow extends \Asgard\Core\Viewable {
 	public function show() {
 	}
 }
