@@ -10,7 +10,7 @@
 					
 					<script>
 					function add() {
-						var newslide = $('<?php echo $form->images->renderjQuery("'+$('.slide').length+'") ?>');
+						var newslide = $('<?php echo $form->images->renderTemplate("'+$('.slide').length+'") ?>');
 						$('#slides').append(newslide);
 						newslide.find("input[type=file]").filestyle({ 
 						    image: "../admin/img/upload.gif",

@@ -1,28 +1,28 @@
 <?php
+namespace Asgard\Slideshow\Controllers;
+
 /**
 @Prefix('admin/slideshow')
 */
 class SlideshowAdminController extends \Asgard\Admin\Libs\Controller\AdminParentController {
 	public function formConfigure() {
 		$controller = $this;
+
 		$form = new \Asgard\Admin\Libs\Form\AdminSimpleForm($this, 'slideshow');
 		$form->images = new \Asgard\Form\DynamicGroup(function($data) use($controller) {
-			if($data !== null)
-				if($data === '' || (is_array($data) && !array_filter(Tools::flateArray($data))))
-					return;
+			if($data === '' || (is_array($data) && !array_filter(\Asgard\Utils\Tools::flateArray($data))))
+				return;
 			return new \Asgard\Admin\Libs\Form\AdminEntityForm(new \Asgard\Slideshow\Entities\Slide, $controller);
 		});
-		foreach(\Asgard\Slideshow\Entities\Slide::orderBy('id ASC')->get() as $k=>$a){
-			$form->images[$k] = new \Asgard\Admin\Libs\Form\AdminEntityForm($a, $this);
-		}
+		foreach(\Asgard\Slideshow\Entities\Slide::orderBy('id ASC')->get() as $a)
+			$form->images[] = new \Asgard\Admin\Libs\Form\AdminEntityForm($a, $this);
 		$form->hasfile = true;
 
-		$controller = $this;
 		$form->images->setDefaultRender(function($field) use($form, $controller) {
 			return 	'<div class="slide">'.$form->h4('Image'.($field->getEntity()->isOld() ? ' <a href="'.$controller->url_for('delete', array('id'=>$field->getEntity()->id)).'" style="font-size:10px">'.__('Supprimer').'</a>':'')).
-			$field->image->def().
-			$field->description->textarea().
-			'</div>';
+				$field->image->def().
+				$field->description->textarea().
+				'</div>';
 		});
 
 		return $form;
