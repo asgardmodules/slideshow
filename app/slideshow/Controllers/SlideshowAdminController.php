@@ -4,18 +4,18 @@ namespace Asgard\Slideshow\Controllers;
 /**
 @Prefix('admin/slideshow')
 */
-class SlideshowAdminController extends \Asgard\Admin\Libs\Controller\AdminParentController {
+class SlideshowAdminController extends \App\Admin\Libs\Controller\AdminParentController {
 	public function formConfigure() {
 		$controller = $this;
 
-		$form = new \Asgard\Admin\Libs\Form\AdminSimpleForm($this, 'slideshow');
+		$form = new \App\Admin\Libs\Form\AdminSimpleForm($this, 'slideshow');
 		$form->images = new \Asgard\Form\DynamicGroup(function($data) use($controller) {
 			if($data === '' || (is_array($data) && !array_filter(\Asgard\Utils\Tools::flateArray($data))))
 				return;
-			return new \Asgard\Admin\Libs\Form\AdminEntityForm(new \Asgard\Slideshow\Entities\Slide, $controller);
+			return new \App\Admin\Libs\Form\AdminEntityForm(new \Asgard\Slideshow\Entities\Slide, $controller);
 		});
 		foreach(\Asgard\Slideshow\Entities\Slide::orderBy('id ASC')->get() as $a)
-			$form->images[] = new \Asgard\Admin\Libs\Form\AdminEntityForm($a, $this);
+			$form->images[] = new \App\Admin\Libs\Form\AdminEntityForm($a, $this);
 		$form->hasfile = true;
 
 		$form->images->setDefaultRender(function($field) use($form, $controller) {
@@ -48,7 +48,7 @@ class SlideshowAdminController extends \Asgard\Admin\Libs\Controller\AdminParent
 				$this->form->save();
 				Flash::addSuccess(__('The slideshow was saved with success.'));
 				if(\Asgard\Core\App::get('post')->get('send') !== null)
-					return \Asgard\Core\App::get('response')->redirect(\Asgard\Core\App::get('url')->url_for(array('Asgard\Admin\Controllers\DefaultAdmin', 'index')));
+					return \Asgard\Core\App::get('response')->redirect(\Asgard\Core\App::get('url')->url_for(array('App\Admin\Controllers\DefaultAdmin', 'index')));
 			} catch(\Asgard\Form\FormException $e) {
 				\Asgard\Core\App::get('flash')->addError($this->form->getGeneralErrors());
 				\Asgard\Core\App::get('response')->setCode(400);
