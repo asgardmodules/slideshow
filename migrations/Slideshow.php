@@ -1,5 +1,5 @@
 <?php
-class FaqMigration {
+class Slideshow {
 	public static function up() {
 		$table = \Asgard\Core\App::get('config')->get('database/prefix').'slide';
 		\Asgard\Core\App::get('schema')->create($table, function($table) {
