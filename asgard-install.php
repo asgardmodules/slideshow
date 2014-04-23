@@ -6,5 +6,5 @@ require _CORE_DIR_.'core.php';
 \Asgard\Utils\FileManager::copy(__DIR__.'/app/slideshow', _DIR_.'app/slideshow');
 \Asgard\Utils\FileManager::copy(__DIR__.'/web/slideshow', _DIR_.'web/slideshow');
 
-\Asgard\Orm\ORMManager::addMigrationFile(__DIR__.'/migrations/Slideshow.php');
-\Asgard\Orm\ORMManager::migrate('Slideshow');
+\Asgard\Orm\MigrationsManager::addMigrationFile(__DIR__.'/migrations/Slideshow.php');
+\Asgard\Orm\MigrationsManager::migrate('Slideshow');
